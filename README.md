@@ -1,16 +1,93 @@
-# React + Vite
+# MHE Next
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing website for MHE Next - a material handling equipment company specializing in forklifts, reach trucks, pallet trucks, and warehouse solutions.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - UI framework
+- **Vite 7** - Build tool with HMR
+- **React Router** - Client-side routing
+- **Lucide React** - Icon library
+- **Vanilla CSS** - Styling with CSS custom properties
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+
+- npm or yarn
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Opens the development server at `http://localhost:5173`
+
+### Production Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Header.jsx/css      # Navigation with products dropdown
+│   ├── Hero.jsx/css        # Homepage hero with video background
+│   ├── Products.jsx/css    # Product detail page
+│   ├── DrivingChange.jsx/css
+│   ├── Industries.jsx/css
+│   ├── Services.jsx/css
+│   ├── WhyChooseUs.jsx/css
+│   ├── Testimonials.jsx/css
+│   ├── CaseStudies.jsx/css
+│   ├── Partners.jsx/css
+│   └── Footer.jsx/css
+├── App.jsx                 # Routes and page composition
+├── App.css
+├── index.css               # Global styles and CSS variables
+└── main.jsx                # Entry point
+public/
+├── logo.png                # MHE Next logo
+├── favicon.png             # Site favicon
+└── hero-video.mp4          # Homepage hero video
+```
+
+## Pages
+
+- `/` - Homepage
+- `/products/electric-forklift` - Electric Counterbalance Forklift product page
+
+## Brand Colors
+
+- Primary Orange: `#eb6c2f`
+- Primary Orange Dark: `#d45a20`
+- Text Dark: `#212121`
+- Text Gray: `#636363`
+
+## Fonts
+
+- **Inter** - Body text
+- **Instrument Sans** - Headings
