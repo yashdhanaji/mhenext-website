@@ -1,317 +1,376 @@
 import { useState } from 'react';
 import {
-  ChevronDown, ChevronUp, Check, Zap, ArrowRight, Star
+  ChevronDown, ChevronUp, Check, ArrowRight, Star,
+  Zap, Battery, Shield, Gauge, Leaf, Wrench, Clock, Award, ClipboardList
 } from 'lucide-react';
+import FormModal from './FormModal';
+import SpecsModal from './SpecsModal';
 import './Products.css';
 
 const Products = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [selectedVariant, setSelectedVariant] = useState('standard');
+  const [formModal, setFormModal] = useState({ open: false, title: '', subtitle: '' });
+  const [specsOpen, setSpecsOpen] = useState(false);
+  const [activeVariant, setActiveVariant] = useState(0);
 
-  const variants = {
-    standard: { name: '1.5 Ton', price: '₹12,50,000', capacity: '1500 kg' },
-    medium: { name: '2.0 Ton', price: '₹15,75,000', capacity: '2000 kg' },
-    heavy: { name: '2.5 Ton', price: '₹18,90,000', capacity: '2500 kg' }
+  const productVariants = [
+    {
+      name: '1.5 Ton · Standard',
+      tag: '1.5T',
+      image: 'https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=700&q=80',
+      description: 'Ideal for light-duty warehousing, retail backrooms, and compact storage facilities. The perfect entry point into electric material handling.',
+      highlights: [
+        '1,500 kg load capacity',
+        '4,500 mm max lift height',
+        '48V · 400 Ah battery system',
+        '6-hour charge · 8+ hour runtime',
+        '1,950 mm turning radius',
+        'Compact footprint for narrow aisles',
+      ],
+    },
+    {
+      name: '2.0 Ton · Popular',
+      tag: '2.0T',
+      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=700&q=80',
+      description: 'Our best-selling configuration — built for mid-sized warehouses and distribution centers that demand versatility and power in equal measure.',
+      highlights: [
+        '2,000 kg load capacity',
+        '5,500 mm max lift height',
+        '80V · 560 Ah battery system',
+        '7-hour charge · 8+ hour runtime',
+        '2,050 mm turning radius',
+        'Regenerative braking standard',
+      ],
+    },
+    {
+      name: '2.5 Ton · Heavy Duty',
+      tag: '2.5T',
+      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&q=80',
+      description: 'Maximum performance for high-throughput operations — manufacturing floors, heavy logistics, and facilities that move serious tonnage daily.',
+      highlights: [
+        '2,500 kg load capacity',
+        '6,000 mm max lift height',
+        '80V · 700 Ah battery system',
+        '8-hour charge · 8+ hour runtime',
+        '2,100 mm turning radius',
+        'Heavy-duty mast & chassis',
+      ],
+    },
+  ];
+
+  const openForm = (title, subtitle = '') => {
+    setFormModal({ open: true, title, subtitle });
+  };
+  const closeForm = () => {
+    setFormModal({ open: false, title: '', subtitle: '' });
   };
 
-  const qualityTests = [
-    { name: 'Load Testing', status: 'Certified', desc: '125% rated capacity stress test' },
-    { name: 'Safety Systems', status: 'Certified', desc: 'ISO 3691-1 compliance verified' },
-    { name: 'Battery Performance', status: 'Certified', desc: '2000+ charge cycle rating' },
-    { name: 'Durability', status: 'Certified', desc: '10,000 hour operational test' }
+  const benefits = [
+    { icon: <Battery size={24} />, label: '8+ Hour', desc: 'Battery Life' },
+    { icon: <Gauge size={24} />, label: '2.5 Ton', desc: 'Max Capacity' },
+    { icon: <Shield size={24} />, label: '3 Year', desc: 'Warranty' },
+    { icon: <Leaf size={24} />, label: 'Zero', desc: 'Emissions' },
+    { icon: <Wrench size={24} />, label: '24/7', desc: 'Service Support' },
+    { icon: <Award size={24} />, label: 'ISO', desc: 'Certified' },
+  ];
+
+  const howItWorks = [
+    { step: '01', title: 'Consult', desc: 'Our specialists assess your warehouse layout, load requirements, and operational workflow to recommend the right configuration.' },
+    { step: '02', title: 'Configure', desc: 'Choose from 1.5T, 2.0T, or 2.5T capacity variants. Customize mast height, fork length, and attachments to match your needs.' },
+    { step: '03', title: 'Deploy', desc: 'We handle delivery, installation, operator training for up to 5 personnel, and ensure your team is fully operational from day one.' },
+  ];
+
+  const qualityMarks = [
+    { label: 'ISO 9001:2015', desc: 'Quality Management System certified manufacturing process.' },
+    { label: 'CE Certified', desc: 'Meets European health, safety, and environmental protection standards.' },
+    { label: 'BIS Approved', desc: 'Bureau of Indian Standards approved for domestic operations.' },
+    { label: '125% Load Tested', desc: 'Every unit stress-tested at 125% rated capacity before delivery.' },
   ];
 
   const testimonials = [
-    { name: 'Rajesh Kumar', company: 'Delhivery Logistics', quote: 'The electric forklifts from MHE Next transformed our warehouse efficiency. 40% reduction in operating costs.', rating: 5 },
-    { name: 'Priya Sharma', company: 'Flipkart Fulfillment', quote: 'Exceptional build quality and the after-sales support is outstanding. Highly recommend.', rating: 5 },
-    { name: 'Amit Patel', company: 'Reliance Retail', quote: 'We\'ve deployed 15 units across our facilities. Zero downtime in 18 months of operation.', rating: 5 }
-  ];
-
-  const relatedProducts = [
-    { name: 'Reach Truck', image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&q=80', desc: 'For high-rack storage' },
-    { name: 'Pallet Truck', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80', desc: 'Ground-level transport' },
-    { name: 'Order Picker', image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&q=80', desc: 'Efficient order fulfillment' }
+    { name: 'Rajesh Kumar', role: 'Head of Operations', company: 'Delhivery Logistics', quote: 'The electric forklifts from MHE Next transformed our warehouse efficiency. 40% reduction in operating costs within the first quarter.', rating: 5 },
+    { name: 'Priya Sharma', role: 'Fulfillment Director', company: 'Flipkart', quote: 'Exceptional build quality and the after-sales support is outstanding. The machines run quietly and reliably — exactly what we needed.', rating: 5 },
+    { name: 'Amit Patel', role: 'Supply Chain VP', company: 'Reliance Retail', quote: 'We\'ve deployed 15 units across our facilities. Zero downtime in 18 months of operation. The ROI speaks for itself.', rating: 5 },
   ];
 
   const faqs = [
-    { q: 'What is the warranty period?', a: 'All our electric forklifts come with a comprehensive 3-year warranty covering the chassis, mast, and electrical components. Battery warranty is 2 years or 2000 charge cycles, whichever comes first.' },
+    { q: 'What is the warranty period?', a: 'All our electric forklifts come with a comprehensive 3-year warranty covering the chassis, mast, and electrical components. Battery warranty is 2 years or 2,000 charge cycles, whichever comes first.' },
     { q: 'Do you provide operator training?', a: 'Yes, we provide complimentary operator training for up to 5 operators per unit purchased. Additional training sessions can be arranged at nominal charges.' },
-    { q: 'What is the lead time for delivery?', a: 'Standard configurations are typically delivered within 2-3 weeks. Custom specifications may require 4-6 weeks depending on requirements.' },
+    { q: 'What is the lead time for delivery?', a: 'Standard configurations are typically delivered within 2–3 weeks. Custom specifications may require 4–6 weeks depending on requirements.' },
     { q: 'Is financing available?', a: 'Yes, we offer flexible financing options including EMI plans, lease-to-own arrangements, and rental programs. Our team can help you choose the best option for your budget.' },
     { q: 'What after-sales support do you provide?', a: 'We offer 24/7 breakdown support, annual maintenance contracts, genuine spare parts supply, and a dedicated service team across major cities in India.' },
-    { q: 'Can the forklift be customized?', a: 'Absolutely. We offer various customizations including fork length, mast height, attachments (side shifters, clamps, rotators), and cabin configurations to match your specific operational needs.' }
+    { q: 'Can the forklift be customized?', a: 'Absolutely. We offer various customizations including fork length, mast height, attachments (side shifters, clamps, rotators), and cabin configurations to match your specific operational needs.' },
   ];
 
   return (
-    <section className="products-page">
-      {/* Hero Section */}
-      <div className="product-hero-wrapper">
-        <div className="product-hero">
-          <div className="product-hero-content">
-          <div className="product-hero-badge">
-            <Zap size={14} />
-            <span>Electric Powered</span>
+    <div className="pdp">
+      {/* Gradient circle orbs */}
+      <div className="pdp-glow pdp-glow-1" />
+      <div className="pdp-glow pdp-glow-2" />
+      <div className="pdp-glow pdp-glow-3" />
+      <div className="pdp-glow pdp-glow-4" />
+      <div className="pdp-glow pdp-glow-5" />
+      <div className="pdp-glow pdp-glow-6" />
+
+      <FormModal
+        isOpen={formModal.open}
+        onClose={closeForm}
+        title={formModal.title}
+        subtitle={formModal.subtitle}
+      />
+      <SpecsModal
+        isOpen={specsOpen}
+        onClose={() => setSpecsOpen(false)}
+      />
+
+      {/* ════════ HERO ════════ */}
+      <section className="pdp-hero">
+        <div className="pdp-hero-inner">
+          <div className="pdp-hero-text">
+            <span className="pdp-eyebrow">Electric Counterbalance Forklift</span>
+            <h1 className="pdp-hero-title">
+              Power Without<br />Compromise.
+            </h1>
+            <p className="pdp-hero-subtitle">
+              Zero emissions. Maximum performance. Our electric counterbalance
+              forklift delivers 1.5–2.5 tons of lifting power with 8+ hours of
+              continuous operation — engineered for the modern warehouse.
+            </p>
+            <div className="pdp-hero-actions">
+              <button
+                className="pdp-btn pdp-btn-primary"
+                onClick={() => openForm('Get a Quote', 'Tell us your requirements and we\'ll prepare a custom quote.')}
+              >
+                Get a Quote
+              </button>
+              <button
+                className="pdp-btn pdp-btn-outline"
+                onClick={() => openForm('Download Brochure', 'Enter your details and we\'ll send the brochure to your email.')}
+              >
+                Download Brochure
+              </button>
+            </div>
+            <p className="pdp-hero-note">Free operator training included</p>
           </div>
-          <h1 className="product-hero-title">
-            Electric Counterbalance Forklift
-          </h1>
-          <p className="product-hero-subtitle">
-            Power your warehouse with clean, efficient, and reliable material handling.
-            Our electric counterbalance forklifts deliver exceptional performance with
-            zero emissions and minimal maintenance.
-          </p>
-          <div className="product-hero-cta">
-            <button className="btn btn-primary">Get a Quote</button>
-            <button className="btn btn-secondary">Download Brochure</button>
-          </div>
-        </div>
-        <div className="product-hero-visual">
-          <div className="product-main-image">
+          <div className="pdp-hero-image">
             <img
-              src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&q=80"
+              src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=800&q=80"
               alt="Electric Counterbalance Forklift"
             />
           </div>
-          <div className="product-hero-stats">
-            <div className="hero-stat-item">
-              <span className="hero-stat-number">1.5-2.5</span>
-              <span className="hero-stat-label">Ton Capacity</span>
-            </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-number">8+ hrs</span>
-              <span className="hero-stat-label">Battery Life</span>
-            </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-number">6m</span>
-              <span className="hero-stat-label">Max Lift Height</span>
-            </div>
+        </div>
+      </section>
+
+      {/* ════════ BENEFITS STRIP ════════ */}
+      <section className="pdp-benefits-strip">
+        <div className="pdp-container">
+          <div className="pdp-benefits-grid">
+            {benefits.map((b, i) => (
+              <div key={i} className="pdp-benefit-item">
+                <span className="pdp-benefit-icon">{b.icon}</span>
+                <div>
+                  <span className="pdp-benefit-label">{b.label}</span>
+                  <span className="pdp-benefit-desc">{b.desc}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
+
+      {/* ════════ INTRO STATEMENT ════════ */}
+      <section className="pdp-statement">
+        <div className="pdp-container pdp-container-narrow">
+          <h2 className="pdp-statement-text">
+            Most forklifts move loads.<br />
+            <span>Ours moves your business forward.</span>
+          </h2>
+          <p className="pdp-statement-body">
+            Engineered with precision, built for endurance, and designed around
+            the operator — our electric counterbalance forklift combines cutting-edge
+            battery technology with intelligent load management to deliver performance
+            that traditional ICE forklifts simply cannot match.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Product Showcase & Pricing */}
-      <div className="product-showcase">
-        <div className="container">
-          <div className="showcase-grid">
-            <div className="showcase-image">
-              <div className="promo-badge">
-                <span>Limited Offer</span>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=500&q=80"
-                alt="Forklift Detail"
-              />
+      {/* ════════ PRODUCT VARIANTS ════════ */}
+      <section className="pdp-variants">
+        <div className="pdp-container">
+          <div className="pdp-variants-header">
+            <span className="pdp-label">Variants</span>
+            <h2 className="pdp-section-title">Choose Your Configuration</h2>
+            <p className="pdp-body">Select a variant that matches your operational requirements.</p>
+          </div>
+
+          <div className="pdp-variants-tabs">
+            {productVariants.map((v, i) => (
+              <button
+                key={i}
+                className={`pdp-variant-tab ${activeVariant === i ? 'active' : ''}`}
+                onClick={() => setActiveVariant(i)}
+              >
+                <Zap size={18} />
+                <span>{v.name}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="pdp-variants-content">
+            <div className="pdp-variants-image">
+              <img src={productVariants[activeVariant].image} alt={productVariants[activeVariant].name} />
             </div>
-            <div className="showcase-details">
-              <h2 className="showcase-title">Choose Your Configuration</h2>
-              <p className="showcase-desc">Select the capacity that matches your operational requirements</p>
-
-              <div className="variant-selector">
-                {Object.entries(variants).map(([key, variant]) => (
-                  <button
-                    key={key}
-                    className={`variant-btn ${selectedVariant === key ? 'active' : ''}`}
-                    onClick={() => setSelectedVariant(key)}
-                  >
-                    <span className="variant-name">{variant.name}</span>
-                    <span className="variant-capacity">{variant.capacity}</span>
-                  </button>
+            <div className="pdp-variants-info">
+              <h3 className="pdp-variants-name">{productVariants[activeVariant].name}</h3>
+              <p className="pdp-variants-desc">{productVariants[activeVariant].description}</p>
+              <ul className="pdp-check-list">
+                {productVariants[activeVariant].highlights.map((h, j) => (
+                  <li key={j}><Check size={18} /> {h}</li>
                 ))}
-              </div>
-
-              <div className="price-display">
-                <span className="price-label">Starting from</span>
-                <span className="price-value">{variants[selectedVariant].price}</span>
-                <span className="price-note">*Ex-showroom price. GST extra.</span>
-              </div>
-
-              <div className="showcase-includes">
-                <h4>Package Includes:</h4>
-                <ul>
-                  <li><Check size={16} /> Standard battery charger</li>
-                  <li><Check size={16} /> Operator training (5 personnel)</li>
-                  <li><Check size={16} /> 3-year comprehensive warranty</li>
-                  <li><Check size={16} /> First-year AMC free</li>
-                </ul>
-              </div>
-
-              <div className="showcase-actions">
-                <button className="btn btn-primary btn-large">
-                  Request Quote
-                  <ArrowRight size={18} />
+              </ul>
+              <div className="pdp-split-actions">
+                <button
+                  className="pdp-btn pdp-btn-primary"
+                  onClick={() => openForm(`Get a Quote — ${productVariants[activeVariant].tag}`, `Request pricing for the ${productVariants[activeVariant].name} variant.`)}
+                >
+                  Get a Quote <ArrowRight size={16} />
                 </button>
-                <span className="stock-status">
-                  <span className="stock-dot"></span>
-                  In Stock - Ready to Ship
-                </span>
+                <button
+                  className="pdp-btn pdp-btn-outline"
+                  onClick={() => setSpecsOpen(true)}
+                >
+                  <ClipboardList size={16} /> Technical Specifications
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Specifications & Quality Section - Side by Side */}
-      <div className="specs-quality-section">
-        <div className="container">
-          <div className="specs-quality-grid">
-            {/* Technical Specifications */}
-            <div className="specs-column">
-              <h2>Technical Specifications</h2>
-              <p className="specs-subtitle">Detailed specs for the {variants[selectedVariant].name} variant</p>
-              <div className="specs-table">
-                <div className="spec-row">
-                  <span className="spec-label">Load Capacity</span>
-                  <span className="spec-value">{variants[selectedVariant].capacity}</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Lift Height (Standard)</span>
-                  <span className="spec-value">3000 mm</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Lift Height (Max)</span>
-                  <span className="spec-value">6000 mm</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Fork Length</span>
-                  <span className="spec-value">1070 mm</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Travel Speed (Loaded)</span>
-                  <span className="spec-value">14 km/h</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Lift Speed (Loaded)</span>
-                  <span className="spec-value">0.45 m/s</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Battery Voltage</span>
-                  <span className="spec-value">48V / 80V</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Battery Capacity</span>
-                  <span className="spec-value">400-700 Ah</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Turning Radius</span>
-                  <span className="spec-value">2100 mm</span>
-                </div>
-                <div className="spec-row">
-                  <span className="spec-label">Overall Length</span>
-                  <span className="spec-value">3450 mm</span>
-                </div>
+      {/* ════════ HOW IT WORKS ════════ */}
+      <section className="pdp-how">
+        <div className="pdp-container">
+          <div className="pdp-how-header">
+            <span className="pdp-label">Process</span>
+            <h2 className="pdp-section-title">From Consultation to Operation in 3 Steps</h2>
+          </div>
+          <div className="pdp-how-grid">
+            {howItWorks.map((item, i) => (
+              <div key={i} className="pdp-how-card">
+                <span className="pdp-how-step">{item.step}</span>
+                <h3 className="pdp-how-title">{item.title}</h3>
+                <p className="pdp-how-desc">{item.desc}</p>
               </div>
-            </div>
-
-            {/* Quality Assurance */}
-            <div className="quality-column">
-              <h2>Quality Tested, Performance Guaranteed</h2>
-              <p className="quality-subtitle">Every unit undergoes rigorous testing and certification before delivery, ensuring you receive equipment that meets the highest international standards.</p>
-              <div className="quality-badges">
-                <span className="quality-badge">ISO 9001:2015</span>
-                <span className="quality-badge">CE Certified</span>
-                <span className="quality-badge">BIS Approved</span>
-              </div>
-              <div className="quality-tests">
-                {qualityTests.map((test, index) => (
-                  <div key={index} className="quality-test-card">
-                    <div className="test-status">
-                      <Check size={16} />
-                      <span>{test.status}</span>
-                    </div>
-                    <h4>{test.name}</h4>
-                    <p>{test.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Testimonials */}
-      <div className="product-testimonials">
-        <div className="container">
-          <div className="section-header">
-            <h2>Real Stories, Real Results</h2>
-            <p>Trusted by leading businesses across India</p>
+      {/* ════════ QUALITY ════════ */}
+      <section className="pdp-quality">
+        <div className="pdp-container">
+          <div className="pdp-quality-header">
+            <span className="pdp-label">Quality</span>
+            <h2 className="pdp-section-title">Tested. Certified. Guaranteed.</h2>
+            <p className="pdp-body pdp-body-max">
+              Every unit undergoes rigorous testing and certification before delivery,
+              ensuring equipment that meets the highest international standards.
+            </p>
           </div>
-          <div className="testimonials-grid">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-card">
-                <div className="testimonial-rating">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
+          <div className="pdp-quality-grid">
+            {qualityMarks.map((q, i) => (
+              <div key={i} className="pdp-quality-card">
+                <div className="pdp-quality-check">
+                  <Check size={20} />
+                </div>
+                <h4 className="pdp-quality-label">{q.label}</h4>
+                <p className="pdp-quality-desc">{q.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ TESTIMONIALS ════════ */}
+      <section className="pdp-testimonials">
+        <div className="pdp-container">
+          <div className="pdp-testimonials-header">
+            <span className="pdp-label">Results</span>
+            <h2 className="pdp-section-title">Real Impact, Measured in ROI</h2>
+          </div>
+          <div className="pdp-testimonials-grid">
+            {testimonials.map((t, i) => (
+              <div key={i} className="pdp-testimonial-card">
+                <div className="pdp-testimonial-stars">
+                  {[...Array(t.rating)].map((_, j) => (
+                    <Star key={j} size={14} fill="currentColor" />
                   ))}
                 </div>
-                <p className="testimonial-quote">"{testimonial.quote}"</p>
-                <div className="testimonial-author">
-                  <span className="author-name">{testimonial.name}</span>
-                  <span className="author-company">{testimonial.company}</span>
+                <p className="pdp-testimonial-quote">&ldquo;{t.quote}&rdquo;</p>
+                <div className="pdp-testimonial-author">
+                  <span className="pdp-testimonial-name">{t.name}</span>
+                  <span className="pdp-testimonial-role">{t.role}, {t.company}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Related Products */}
-      <div className="related-products">
-        <div className="container">
-          <div className="section-header">
-            <h2>Explore Related Equipment</h2>
-            <p>Complete your material handling fleet</p>
+      {/* ════════ FAQ ════════ */}
+      <section className="pdp-faq">
+        <div className="pdp-container pdp-container-narrow">
+          <div className="pdp-faq-header">
+            <span className="pdp-label">FAQ</span>
+            <h2 className="pdp-section-title">Common Questions</h2>
           </div>
-          <div className="related-grid">
-            {relatedProducts.map((product, index) => (
-              <div key={index} className="related-card">
-                <div className="related-image">
-                  <img src={product.image} alt={product.name} />
-                </div>
-                <div className="related-info">
-                  <h3>{product.name}</h3>
-                  <p>{product.desc}</p>
-                  <div className="related-actions">
-                    <button className="btn btn-primary btn-small">Get Started</button>
-                    <button className="btn btn-text">Learn More</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="faq-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Everything you need to know about our electric forklifts</p>
-          </div>
-          <div className="faq-list">
-            {faqs.map((faq, index) => (
+          <div className="pdp-faq-list">
+            {faqs.map((faq, i) => (
               <div
-                key={index}
-                className={`faq-item ${openFaq === index ? 'open' : ''}`}
+                key={i}
+                className={`pdp-faq-item ${openFaq === i ? 'open' : ''}`}
               >
                 <button
-                  className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="pdp-faq-q"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 >
                   <span>{faq.q}</span>
-                  {openFaq === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  {openFaq === i ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </button>
-                <div className="faq-answer">
+                <div className="pdp-faq-a">
                   <p>{faq.a}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-    </section>
+      {/* ════════ BOTTOM CTA ════════ */}
+      <section className="pdp-cta">
+        <div className="pdp-container pdp-container-narrow">
+          <h2 className="pdp-cta-title">Ready to Transform Your Operations?</h2>
+          <p className="pdp-cta-body">
+            Join 500+ businesses across India running cleaner, quieter, and more
+            efficient warehouses with MHE Next electric forklifts.
+          </p>
+          <div className="pdp-cta-actions">
+            <button
+              className="pdp-btn pdp-btn-white"
+              onClick={() => openForm('Get Started', 'Let\'s find the right forklift for your operation.')}
+            >
+              Get Started <ArrowRight size={16} />
+            </button>
+            <button
+              className="pdp-btn pdp-btn-ghost"
+              onClick={() => openForm('Talk to a Specialist', 'Connect with a material handling expert.')}
+            >
+              Talk to a Specialist
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

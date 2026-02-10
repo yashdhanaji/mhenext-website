@@ -1,0 +1,302 @@
+/* Expandable Card Component */
+
+/* ===== Overlay ===== */
+.expandable-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+/* ===== Modal ===== */
+.expandable-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 100;
+}
+
+.expandable-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.expandable-close-icon {
+  height: 16px;
+  width: 16px;
+  color: black;
+}
+
+.expandable-modal {
+  width: 100%;
+  max-width: 560px;
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable inner wrapper — everything scrolls together */
+.expandable-modal-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.expandable-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.expandable-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.expandable-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.expandable-modal-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.expandable-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 12px;
+  gap: 16px;
+}
+
+.expandable-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.expandable-modal-desc {
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.expandable-modal-content {
+  padding: 0 24px 24px;
+}
+
+.expandable-modal-body {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* ===== Pill Wrapper ===== */
+.expandable-pill-wrapper {
+  background: var(--bg-lighter);
+  border-radius: 32px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===== Card Grid - 2 columns side by side ===== */
+.expandable-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===== Square Card Item ===== */
+.expandable-card-item {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-light);
+  aspect-ratio: 1 / 1;
+}
+
+.expandable-card-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-orange);
+}
+
+/* Card Image */
+.expandable-card-image-wrap {
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.expandable-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.expandable-card-item:hover .expandable-card-thumb {
+  transform: scale(1.05);
+}
+
+/* Card Body */
+.expandable-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  flex: 1;
+  gap: 8px;
+}
+
+.expandable-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+.expandable-card-desc {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+/* CTA Button */
+.expandable-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 14px;
+  border-radius: 50px;
+  font-weight: 600;
+  background: var(--bg-lighter);
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.expandable-cta-btn:hover {
+  background: var(--primary-orange);
+  color: white;
+  border-color: var(--primary-orange);
+}
+
+.expandable-cta-btn.active {
+  background: var(--primary-orange);
+  color: white;
+  border-color: var(--primary-orange);
+  padding: 12px 24px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .expandable-pill-wrapper {
+    border-radius: 24px;
+    padding: 16px;
+  }
+
+  .expandable-card-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .expandable-card-item {
+    aspect-ratio: auto;
+  }
+
+  .expandable-card-image-wrap {
+    height: 180px;
+  }
+
+  .expandable-card-body {
+    padding: 20px;
+  }
+
+  .expandable-card-title {
+    font-size: 16px;
+  }
+
+  .expandable-modal {
+    max-width: 95vw;
+    border-radius: 20px;
+    max-height: 85vh;
+  }
+
+  .expandable-modal-image {
+    height: 200px;
+  }
+
+  .expandable-modal-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 20px 8px;
+  }
+
+  .expandable-modal-content {
+    padding: 0 20px 20px;
+  }
+
+  .expandable-modal-body {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .expandable-pill-wrapper {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .expandable-card-item {
+    border-radius: 16px;
+  }
+
+  .expandable-card-body {
+    padding: 16px;
+  }
+}

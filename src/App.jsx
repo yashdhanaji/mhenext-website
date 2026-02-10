@@ -10,11 +10,18 @@ import Testimonials from './components/Testimonials';
 import CaseStudies from './components/CaseStudies';
 import Partners from './components/Partners';
 import Footer from './components/Footer';
-import Products from './components/Products';
+import ProductDetail from './components/ProductDetail';
+import ProductsListing from './components/ProductsListing';
 
 function HomePage() {
   return (
-    <>
+    <div className="homepage">
+      <div className="homepage-glow homepage-glow-1" />
+      <div className="homepage-glow homepage-glow-2" />
+      <div className="homepage-glow homepage-glow-3" />
+      <div className="homepage-glow homepage-glow-4" />
+      <div className="homepage-glow homepage-glow-5" />
+      <div className="homepage-glow homepage-glow-6" />
       <Hero />
       <DrivingChange />
       <Industries />
@@ -23,12 +30,12 @@ function HomePage() {
       <Testimonials />
       <CaseStudies />
       <Partners />
-    </>
+    </div>
   );
 }
 
 function ProductsPage() {
-  return <Products />;
+  return <ProductDetail />;
 }
 
 function App() {
@@ -39,6 +46,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductsListing />} />
             <Route path="/products/electric-forklift" element={<ProductsPage />} />
           </Routes>
         </main>

@@ -1,0 +1,255 @@
+/* ===== Specs Modal ===== */
+
+.specs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+}
+
+.specs-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 201;
+  padding: 24px;
+}
+
+.specs-modal {
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.specs-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-lighter);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  color: var(--text-gray);
+}
+
+.specs-modal-close:hover {
+  background: var(--text-dark);
+  color: #fff;
+}
+
+/* Scrollable area */
+.specs-modal-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding: 40px 32px 32px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.specs-modal-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.specs-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.specs-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+/* Header */
+.specs-modal-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.specs-modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(235, 108, 47, 0.1);
+  color: var(--primary-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.specs-modal-title {
+  font-family: 'Clash Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.specs-modal-subtitle {
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+/* Variant Selector */
+.specs-variant-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.specs-variant-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.specs-variant-btn:hover {
+  border-color: var(--primary-orange);
+}
+
+.specs-variant-btn.active {
+  border-color: var(--primary-orange);
+  background: rgba(235, 108, 47, 0.04);
+  box-shadow: 0 0 0 3px rgba(235, 108, 47, 0.08);
+}
+
+.specs-variant-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.specs-variant-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-light-gray);
+}
+
+.specs-variant-btn.active .specs-variant-tag {
+  color: var(--primary-orange);
+}
+
+/* Specs Table */
+.specs-modal-table {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.specs-modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.specs-modal-row:last-child {
+  border-bottom: none;
+}
+
+.specs-modal-label {
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.specs-modal-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: right;
+}
+
+/* Download Button */
+.specs-modal-download {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.specs-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 28px;
+  background: var(--primary-orange);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.specs-download-btn:hover {
+  background: var(--primary-orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(235, 108, 47, 0.25);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .specs-modal-wrapper {
+    padding: 16px;
+  }
+
+  .specs-modal {
+    max-width: 100%;
+    border-radius: 20px;
+    max-height: 88vh;
+  }
+
+  .specs-modal-scroll {
+    padding: 32px 20px 24px;
+  }
+
+  .specs-variant-selector {
+    gap: 8px;
+  }
+
+  .specs-variant-btn {
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+
+  .specs-variant-name {
+    font-size: 15px;
+  }
+
+  .specs-modal-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .specs-modal-value {
+    text-align: left;
+  }
+}
