@@ -9,11 +9,13 @@ const Header = () => {
   const location = useLocation();
 
   const products = [
-    { name: 'Electric Counterbalance Forklift', href: '/products/electric-forklift' },
-    { name: 'Reach Truck', href: '/products/reach-truck' },
-    { name: 'Pallet Truck', href: '/products/pallet-truck' },
-    { name: 'Order Picker', href: '/products/order-picker' },
-    { name: 'Stacker', href: '/products/stacker' },
+    { name: 'Electric Forklift 2T', href: '/products/electric-forklift' },
+    { name: 'Electric Forklift 3T', href: '/products/electric-forklift-3t' },
+    { name: 'Electric Forklift 5T', href: '/products/electric-forklift-5t' },
+    { name: 'Electric Forklift 8T', href: '/products/electric-forklift-8t' },
+    { name: 'Electric Forklift 10T', href: '/products/electric-forklift-10t' },
+    { name: 'Three Wheel Forklift', href: '/products/three-wheel-electric-forklift' },
+    { name: 'Heli Electric Forklift', href: '/products/heli-make-forklift' },
   ];
 
   const isProductsPage = location.pathname.startsWith('/products');
@@ -53,6 +55,13 @@ const Header = () => {
                       {product.name}
                     </Link>
                   ))}
+                  <Link
+                    to="/products"
+                    className="dropdown-item dropdown-item-all"
+                    onClick={() => setIsProductsOpen(false)}
+                  >
+                    View All Products
+                  </Link>
                 </div>
               </div>
             </li>

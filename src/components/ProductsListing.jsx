@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronRight, ArrowRight } from 'lucide-react';
+import { productCategories } from '../data/products';
 import './ProductsListing.css';
 
 function FlipLabel({ text }) {
@@ -37,64 +38,6 @@ function FlipLabel({ text }) {
     </div>
   );
 }
-
-const productCategories = [
-  {
-    category: 'Counterbalance Forklifts',
-    products: [
-      {
-        name: 'Electric Counterbalance Forklift',
-        desc: 'Zero-emission powerhouse delivering 1.5–2.5 tons of lifting capacity with 8+ hours of continuous runtime.',
-        image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&q=80',
-        badges: ['Electric'],
-        specs: ['2.5T Capacity', '6.0m Lift', '8h+ Runtime'],
-        link: '/products/electric-forklift',
-      },
-    ],
-  },
-  {
-    category: 'Warehouse Equipment',
-    products: [
-      {
-        name: 'Reach Truck',
-        desc: 'Designed for narrow-aisle operations with reach heights up to 10.5 meters for high-density storage.',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80',
-        badges: ['Electric'],
-        specs: ['2.0T Capacity', '10.5m Reach', 'Li-ion'],
-        link: '/products/reach-truck',
-      },
-      {
-        name: 'Order Picker',
-        desc: 'Elevates the operator to picking height for efficient order fulfillment in warehouse environments.',
-        image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80',
-        badges: ['Electric', 'Ergonomic'],
-        specs: ['1.0T Capacity', '10m Height', 'Safe Platform'],
-        link: '/products/order-picker',
-      },
-    ],
-  },
-  {
-    category: 'Floor-Level Equipment',
-    products: [
-      {
-        name: 'Pallet Truck',
-        desc: 'Compact and efficient for ground-level pallet transport and dock-to-stock operations.',
-        image: 'https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=600&q=80',
-        badges: ['Electric', 'Compact'],
-        specs: ['3.0T Capacity', 'Walk-behind', '24V'],
-        link: '/products/pallet-truck',
-      },
-      {
-        name: 'Stacker',
-        desc: 'Versatile stacking solution for medium-height warehouse racking systems and logistics hubs.',
-        image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80',
-        badges: ['Electric'],
-        specs: ['1.6T Capacity', '5.4m Lift', 'Compact'],
-        link: '/products/stacker',
-      },
-    ],
-  },
-];
 
 export default function ProductsListing() {
   return (

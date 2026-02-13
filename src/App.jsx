@@ -34,10 +34,6 @@ function HomePage() {
   );
 }
 
-function ProductsPage() {
-  return <ProductDetail />;
-}
-
 function App() {
   return (
     <Router>
@@ -47,7 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsListing />} />
-            <Route path="/products/electric-forklift" element={<ProductsPage />} />
+            <Route path="/products/:slug" element={<ProductDetail />} />
           </Routes>
         </main>
         <Footer />
