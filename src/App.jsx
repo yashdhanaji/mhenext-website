@@ -12,6 +12,9 @@ import Partners from './components/Partners';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
 import ProductsListing from './components/ProductsListing';
+import About from './components/About';
+import CaseStudiesPage from './components/CaseStudiesPage';
+import BlogPage from './components/BlogPage';
 
 function HomePage() {
   return (
@@ -42,6 +45,9 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/products" element={<ProductsListing />} />
             <Route path="/products/:slug" element={<ProductDetail />} />
           </Routes>

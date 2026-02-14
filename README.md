@@ -33,6 +33,8 @@ npm run dev
 
 Opens the development server at `http://localhost:5173`
 
+**Note:** The dev command automatically fetches the latest product data from Google Sheets before starting the server.
+
 ### Production Build
 
 ```bash
@@ -51,6 +53,21 @@ npm run preview
 npm run lint
 ```
 
+### Product Data Management
+
+The product catalog is managed via Google Sheets and automatically synced:
+
+```bash
+npm run fetch-products    # Manually fetch latest product data from Google Sheets
+npm run migrate-to-sheets # One-time migration to move products to Google Sheets
+```
+
+**Required Environment Variables:**
+- `GOOGLE_SHEET_ID` - Your Google Sheet ID
+- `GOOGLE_API_KEY` - Your Google Sheets API key
+
+Create a `.env` file in the root directory with these variables.
+
 ## Project Structure
 
 ```
@@ -58,6 +75,9 @@ src/
 ├── components/
 │   ├── Header.jsx/css          # Navigation with products dropdown
 │   ├── Hero.jsx/css            # Homepage hero with video background
+│   ├── About.jsx/css           # About page
+│   ├── BlogPage.jsx/css        # Blog page
+│   ├── CaseStudiesPage.jsx/css # Case studies full page
 │   ├── ProductsListing.jsx/css # Products listing page (category groups)
 │   ├── ProductDetail.jsx/css   # Individual product detail page
 │   ├── Products.jsx/css        # Product sections/cards
@@ -72,12 +92,18 @@ src/
 │   ├── CaseStudies.jsx/css
 │   ├── Partners.jsx/css
 │   └── Footer.jsx/css
+├── data/
+│   └── products.js             # Product catalog (auto-generated from Google Sheets)
 ├── hooks/
 │   └── useOutsideClick.js      # Click-outside detection hook
 ├── App.jsx                     # Routes and page composition
 ├── App.css
 ├── index.css                   # Global styles and CSS variables
 └── main.jsx                    # Entry point
+scripts/
+├── fetch-products.js           # Fetches product data from Google Sheets
+├── migrate-to-sheets.js        # One-time migration script
+└── sheets-config.js            # Google Sheets configuration
 public/
 ├── logo.png                    # MHE Next logo
 ├── favicon.png                 # Site favicon
@@ -87,9 +113,12 @@ public/
 
 ## Pages
 
-- `/` — Homepage
+- `/` — Homepage (hero, driving change, industries, services, testimonials, case studies, partners)
+- `/about` — About page
+- `/case-studies` — Case studies page
+- `/blog` — Blog page
 - `/products` — Products listing (all products grouped by category)
-- `/products/electric-forklift` — Electric Counterbalance Forklift detail page
+- `/products/:slug` — Individual product detail page (dynamic route for each product)
 
 ---
 
@@ -155,3 +184,34 @@ public/
 - **Form Modals:** Lead capture for quotes and brochure downloads
 - **Tabbed Content:** Specifications, Features, Applications, Downloads with AnimatePresence
 - **Image Gallery:** Thumbnail navigation with main image transitions
+
+---
+
+## Data Management
+
+### Google Sheets Integration
+
+The product catalog is managed via Google Sheets for easy content updates without code changes.
+
+**How it works:**
+1. Product data is stored in a Google Sheet with columns for name, description, specs, images, etc.
+2. The `fetch-products.js` script fetches data via Google Sheets API
+3. Data is transformed and written to `src/data/products.js`
+4. Script runs automatically before dev server starts and production builds
+
+**Configuration:**
+- Sheet structure and column mappings: `scripts/sheets-config.js`
+- Available icons, category order, and field mappings are defined in config
+- Supports multiple sheets for different product categories
+
+**Environment Setup:**
+```bash
+# .env file
+GOOGLE_SHEET_ID=your_sheet_id_here
+GOOGLE_API_KEY=your_api_key_here
+```
+
+**Manual Sync:**
+```bash
+npm run fetch-products
+```

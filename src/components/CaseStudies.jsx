@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import './CaseStudies.css';
 
@@ -32,9 +33,9 @@ const CaseStudies = () => {
               <span>satisfied clients</span>
             </h2>
           </div>
-          <button className="btn btn-outline case-studies-btn">
+          <Link to="/case-studies" className="btn btn-outline case-studies-btn">
             See all case studies
-          </button>
+          </Link>
         </div>
 
         <div className="case-studies-grid">
@@ -50,9 +51,9 @@ const CaseStudies = () => {
                     </div>
                   ))}
                 </div>
-                <button className="btn btn-dark case-study-cta">
+                <Link to="/case-studies" className="btn btn-dark case-study-cta">
                   View case
-                </button>
+                </Link>
               </div>
               <div className="case-study-image">
                 <img src={study.image} alt={study.title} />

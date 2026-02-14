@@ -1,0 +1,639 @@
+/* ============================================
+   ABOUT PAGE - GLOBAL STYLES
+   ============================================ */
+
+.about-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.section {
+  padding: 125px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary-orange);
+  background: rgba(235, 108, 47, 0.1);
+  padding: 8px 20px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.text-orange {
+  color: var(--primary-orange);
+}
+
+/* ============================================
+   COMPANY HISTORY SECTION - TIMELINE
+   ============================================ */
+
+.about-history {
+  background: var(--bg-lighter);
+}
+
+.about-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.about-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 120px;
+  perspective: 1000px;
+}
+
+/* Timeline vertical line (background) */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(235, 108, 47, 0.15);
+}
+
+/* Animated timeline line */
+.timeline-line-animated {
+  position: absolute;
+  left: 60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--primary-orange) 0%,
+    var(--primary-orange) 70%,
+    rgba(235, 108, 47, 0.5) 100%
+  );
+  transform-origin: top;
+  z-index: 1;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -60px;
+  top: 0;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.timeline-year {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+  background: var(--bg-white);
+  padding: 10px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Timeline dot */
+.timeline-marker::after {
+  content: '';
+  position: absolute;
+  right: -63px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--primary-orange);
+  border: 3px solid var(--bg-white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(235, 108, 47, 0.2);
+  z-index: 3;
+}
+
+.timeline-content {
+  position: relative;
+}
+
+.timeline-card {
+  background: var(--bg-white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.timeline-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.timeline-card:hover .timeline-image img {
+  transform: scale(1.05);
+}
+
+.timeline-text {
+  padding: 35px 40px;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.timeline-description {
+  font-size: 0.95rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+/* ============================================
+   MISSION & VALUES SECTION
+   ============================================ */
+
+.about-mission {
+  background: var(--bg-white);
+}
+
+.mission-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.mission-title {
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.mission-content,
+.values-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-heading,
+.values-heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+}
+
+.mission-text {
+  font-size: 1.05rem;
+  color: var(--text-gray);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.mission-image {
+  width: 100%;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mission-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.values-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  background: var(--bg-lighter);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.value-item:hover {
+  background: var(--bg-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateX(8px);
+}
+
+.value-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(235, 108, 47, 0.1);
+  color: var(--primary-orange);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+  background: var(--primary-orange);
+  color: var(--bg-white);
+  transform: scale(1.1);
+}
+
+.value-text {
+  flex: 1;
+}
+
+.value-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.value-description {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* ============================================
+   TEAM SECTION
+   ============================================ */
+
+.about-team {
+  background: var(--bg-lighter);
+}
+
+.team-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.team-title {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.team-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.team-card {
+  background: var(--bg-white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.team-photo {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-photo img {
+  transform: scale(1.08);
+}
+
+.team-info {
+  padding: 30px;
+}
+
+.team-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.team-role {
+  font-size: 0.9rem;
+  color: var(--primary-orange);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.team-bio {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 100px 0;
+  }
+
+  .container {
+    padding: 0 40px;
+  }
+
+  .about-title,
+  .mission-title,
+  .team-title {
+    font-size: 2.5rem;
+  }
+
+  .mission-grid {
+    gap: 60px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline {
+    padding-left: 100px;
+  }
+
+  .timeline::before {
+    left: 50px;
+  }
+
+  .timeline-line-animated {
+    left: 50px;
+  }
+
+  .timeline-marker {
+    left: -50px;
+    width: 100px;
+  }
+
+  .timeline-marker::after {
+    right: -53px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 75px 0;
+  }
+
+  .container {
+    padding: 0 25px;
+  }
+
+  .about-title,
+  .mission-title,
+  .team-title {
+    font-size: 2rem;
+  }
+
+  .about-subtitle,
+  .team-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .about-header,
+  .mission-header,
+  .team-header {
+    margin-bottom: 50px;
+  }
+
+  /* Timeline mobile adjustments */
+  .timeline {
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-line-animated {
+    left: 20px;
+  }
+
+  .timeline-marker {
+    left: 0;
+    width: 60px;
+  }
+
+  .timeline-year {
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+
+  .timeline-marker::after {
+    right: auto;
+    left: 14px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .timeline-content {
+    margin-left: 60px;
+  }
+
+  .timeline-image {
+    height: 220px;
+  }
+
+  .timeline-text {
+    padding: 25px 25px;
+  }
+
+  .timeline-title {
+    font-size: 1.2rem;
+  }
+
+  .timeline-description {
+    font-size: 0.9rem;
+  }
+
+  /* Mission & Values mobile */
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .mission-heading,
+  .values-heading {
+    font-size: 1.4rem;
+  }
+
+  .mission-text {
+    font-size: 0.95rem;
+  }
+
+  .mission-image {
+    height: 280px;
+  }
+
+  .value-item {
+    padding: 20px;
+  }
+
+  .value-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Team mobile */
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .team-photo {
+    height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-tag {
+    font-size: 0.65rem;
+    padding: 6px 16px;
+  }
+
+  .about-title,
+  .mission-title,
+  .team-title {
+    font-size: 1.75rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 40px;
+  }
+
+  .timeline-image {
+    height: 200px;
+  }
+
+  .timeline-text {
+    padding: 20px;
+  }
+
+  .timeline-title {
+    font-size: 1.1rem;
+  }
+
+  .mission-image {
+    height: 240px;
+  }
+
+  .value-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .value-item:hover {
+    transform: translateX(0);
+  }
+
+  .team-photo {
+    height: 300px;
+  }
+
+  .team-info {
+    padding: 25px 20px;
+  }
+
+  .team-name {
+    font-size: 1.2rem;
+  }
+
+  .team-role {
+    font-size: 0.85rem;
+  }
+
+  .team-bio {
+    font-size: 0.8rem;
+  }
+}

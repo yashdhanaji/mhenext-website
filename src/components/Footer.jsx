@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import './Footer.css';
 
@@ -5,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const company = [
-    { name: 'About Us', href: '#about' },
+    { name: 'About Us', href: '/about' },
     { name: 'Careers', href: '#careers' },
     { name: 'News', href: '#news' },
     { name: 'Contact', href: '#contact' }
@@ -26,9 +27,9 @@ const Footer = () => {
   ];
 
   const resources = [
-    { name: 'Case Studies', href: '#case-studies' },
+    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Documentation', href: '#docs' },
-    { name: 'Blog', href: '#blog' },
+    { name: 'Blog', href: '/blog' },
     { name: 'FAQs', href: '#faqs' }
   ];
 
@@ -61,7 +62,11 @@ const Footer = () => {
             <ul className="footer-links">
               {company.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href}>{link.name}</a>
+                  {link.href.startsWith('/') ? (
+                    <Link to={link.href}>{link.name}</Link>
+                  ) : (
+                    <a href={link.href}>{link.name}</a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -72,7 +77,11 @@ const Footer = () => {
             <ul className="footer-links">
               {products.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href}>{link.name}</a>
+                  {link.href.startsWith('/') ? (
+                    <Link to={link.href}>{link.name}</Link>
+                  ) : (
+                    <a href={link.href}>{link.name}</a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -94,7 +103,11 @@ const Footer = () => {
             <ul className="footer-links">
               {resources.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href}>{link.name}</a>
+                  {link.href.startsWith('/') ? (
+                    <Link to={link.href}>{link.name}</Link>
+                  ) : (
+                    <a href={link.href}>{link.name}</a>
+                  )}
                 </li>
               ))}
             </ul>
