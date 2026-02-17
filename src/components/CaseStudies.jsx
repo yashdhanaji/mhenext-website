@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import './CaseStudies.css';
 
 const CaseStudies = () => {
   const caseStudies = [
     {
+      slug: 'ecommerce-fulfillment-automation',
       title: 'E-commerce fulfillment center automation',
       image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&q=80',
       stats: [
@@ -12,6 +14,7 @@ const CaseStudies = () => {
       ]
     },
     {
+      slug: 'pharmaceutical-warehouse-modernization',
       title: 'Pharmaceutical warehouse modernization',
       image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80',
       stats: [
@@ -32,9 +35,9 @@ const CaseStudies = () => {
               <span>satisfied clients</span>
             </h2>
           </div>
-          <button className="btn btn-outline case-studies-btn">
+          <Link to="/case-studies" className="btn btn-outline case-studies-btn">
             See all case studies
-          </button>
+          </Link>
         </div>
 
         <div className="case-studies-grid">
@@ -50,9 +53,9 @@ const CaseStudies = () => {
                     </div>
                   ))}
                 </div>
-                <button className="btn btn-dark case-study-cta">
+                <Link to={`/case-studies/${study.slug}`} className="btn btn-dark case-study-cta">
                   View case
-                </button>
+                </Link>
               </div>
               <div className="case-study-image">
                 <img src={study.image} alt={study.title} />

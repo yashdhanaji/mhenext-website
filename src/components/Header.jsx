@@ -65,9 +65,21 @@ const Header = () => {
                 </div>
               </div>
             </li>
-            <li><a href="#about" className="nav-link">About</a></li>
-            <li><a href="#case-studies" className="nav-link">Case studies</a></li>
-            <li><a href="#blog" className="nav-link">Blog</a></li>
+            <li>
+              <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/case-studies" className={`nav-link ${location.pathname.startsWith('/case-studies') ? 'active' : ''}`}>
+                Case studies
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className={`nav-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
+                Blog
+              </Link>
+            </li>
           </ul>
         </nav>
 

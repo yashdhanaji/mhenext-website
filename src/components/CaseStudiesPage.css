@@ -1,0 +1,371 @@
+.csp {
+  min-height: 100vh;
+  background: var(--bg-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glows */
+.csp-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.csp-glow-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(235, 108, 47, 0.07) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+.csp-glow-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(235, 108, 47, 0.05) 0%, transparent 70%);
+  top: 400px;
+  right: -80px;
+}
+.csp-glow-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(235, 108, 47, 0.05) 0%, transparent 70%);
+  bottom: 200px;
+  left: 30%;
+}
+
+.csp-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Hero */
+.csp-hero {
+  padding: 180px 40px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.csp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-light-gray);
+  margin-bottom: 40px;
+}
+
+.csp-breadcrumb a {
+  color: var(--text-light-gray);
+  transition: color 0.2s;
+}
+
+.csp-breadcrumb a:hover {
+  color: var(--primary-orange);
+}
+
+.csp-breadcrumb span {
+  color: var(--text-dark);
+}
+
+.csp-hero-title {
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+
+.csp-hero-subtitle {
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: var(--text-gray);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 60px;
+}
+
+.csp-hero-stats {
+  display: flex;
+  gap: 60px;
+}
+
+.csp-hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.csp-hero-stat-value {
+  font-family: 'Clash Grotesk', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  color: var(--primary-orange);
+  line-height: 1;
+}
+
+.csp-hero-stat-label {
+  font-size: 14px;
+  color: var(--text-light-gray);
+}
+
+/* Filters */
+.csp-filters-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 0 50px;
+}
+
+.csp-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.csp-filter-btn {
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-gray);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.csp-filter-btn:hover {
+  border-color: var(--primary-orange);
+  color: var(--primary-orange);
+}
+
+.csp-filter-btn.active {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  color: #fff;
+}
+
+/* Grid */
+.csp-grid-section {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+}
+
+.csp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.csp-card {
+  background: var(--bg-white);
+  border-radius: 24px;
+  border: 1.5px solid var(--border-light);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.csp-card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.09);
+  transform: translateY(-4px);
+  border-color: transparent;
+}
+
+.csp-card-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.csp-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.csp-card:hover .csp-card-image img {
+  transform: scale(1.04);
+}
+
+.csp-card-industry {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+}
+
+.csp-card-body {
+  padding: 28px;
+}
+
+.csp-card-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.csp-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-light-gray);
+}
+
+.csp-card-meta-item svg {
+  flex-shrink: 0;
+  color: var(--primary-orange);
+}
+
+.csp-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.csp-card-excerpt {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.csp-card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-lighter);
+  border-radius: 14px;
+  margin-bottom: 24px;
+}
+
+.csp-card-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.csp-card-stat-value {
+  font-family: 'Clash Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--primary-orange);
+  line-height: 1;
+}
+
+.csp-card-stat-label {
+  font-size: 12px;
+  color: var(--text-light-gray);
+  line-height: 1.4;
+}
+
+.csp-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.csp-card-link:hover {
+  color: var(--primary-orange);
+  gap: 12px;
+}
+
+/* CTA */
+.csp-cta {
+  padding: 80px 0 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.csp-cta-inner {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #2a2a2a 100%);
+  border-radius: 28px;
+  padding: 72px 80px;
+  text-align: center;
+}
+
+.csp-cta-inner .section-tag {
+  background: rgba(235, 108, 47, 0.15);
+  color: var(--primary-orange);
+  border: 1px solid rgba(235, 108, 47, 0.3);
+}
+
+.csp-cta-title {
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 600;
+  color: #fff;
+  margin: 20px 0 16px;
+}
+
+.csp-cta-desc {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.csp-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  padding: 14px 32px;
+}
+
+@media (max-width: 1024px) {
+  .csp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .csp-cta-inner {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .csp-hero {
+    padding: 140px 24px 60px;
+  }
+
+  .csp-hero-stats {
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+
+  .csp-container {
+    padding: 0 24px;
+  }
+
+  .csp-card-meta {
+    gap: 10px;
+  }
+
+  .csp-cta-inner {
+    padding: 48px 28px;
+    border-radius: 20px;
+  }
+}

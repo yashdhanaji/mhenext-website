@@ -1,4 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -12,6 +21,11 @@ import Partners from './components/Partners';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
 import ProductsListing from './components/ProductsListing';
+import CaseStudiesPage from './components/CaseStudiesPage';
+import CaseStudyDetail from './components/CaseStudyDetail';
+import About from './components/About';
+import Blog from './components/Blog';
+import BlogPost from './components/BlogPost';
 
 function HomePage() {
   return (
@@ -38,12 +52,18 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsListing />} />
             <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </main>
         <Footer />
