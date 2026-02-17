@@ -1,22 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { productCategories } from '../data/products';
 import './Header.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const location = useLocation();
-
-  const products = [
-    { name: 'Electric Forklift 2T', href: '/products/electric-forklift' },
-    { name: 'Electric Forklift 3T', href: '/products/electric-forklift-3t' },
-    { name: 'Electric Forklift 5T', href: '/products/electric-forklift-5t' },
-    { name: 'Electric Forklift 8T', href: '/products/electric-forklift-8t' },
-    { name: 'Electric Forklift 10T', href: '/products/electric-forklift-10t' },
-    { name: 'Three Wheel Forklift', href: '/products/three-wheel-electric-forklift' },
-    { name: 'Heli Electric Forklift', href: '/products/heli-make-forklift' },
-  ];
 
   const isProductsPage = location.pathname.startsWith('/products');
 
@@ -43,25 +35,42 @@ const Header = () => {
                 Products
                 <ChevronDown size={16} className={`dropdown-icon ${isProductsOpen ? 'open' : ''}`} />
               </button>
-              <div className={`dropdown-menu ${isProductsOpen ? 'open' : ''}`}>
-                <div className="dropdown-content">
-                  {products.map((product, index) => (
+              <div className={`dropdown-menu dropdown-menu-mega ${isProductsOpen ? 'open' : ''}`}>
+                <div className="dropdown-content-mega">
+                  {/* Categories Column */}
+                  <div className="dropdown-categories">
+                    {productCategories.map((category, index) => (
+                      <div
+                        key={category.category}
+                        className={`category-item ${activeCategoryIndex === index ? 'active' : ''}`}
+                        onMouseEnter={() => setActiveCategoryIndex(index)}
+                      >
+                        <span>{category.category}</span>
+                        <ChevronRight size={16} className="category-arrow" />
+                      </div>
+                    ))}
                     <Link
-                      key={index}
-                      to={product.href}
-                      className="dropdown-item"
+                      to="/products"
+                      className="category-item category-item-all"
                       onClick={() => setIsProductsOpen(false)}
                     >
-                      {product.name}
+                      <span>View All Products</span>
                     </Link>
-                  ))}
-                  <Link
-                    to="/products"
-                    className="dropdown-item dropdown-item-all"
-                    onClick={() => setIsProductsOpen(false)}
-                  >
-                    View All Products
-                  </Link>
+                  </div>
+
+                  {/* Products Column */}
+                  <div className="dropdown-products">
+                    {productCategories[activeCategoryIndex]?.products.map((product, index) => (
+                      <Link
+                        key={index}
+                        to={product.link}
+                        className="product-item"
+                        onClick={() => setIsProductsOpen(false)}
+                      >
+                        {product.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </li>
@@ -71,12 +80,20 @@ const Header = () => {
               </Link>
             </li>
             <li>
+<<<<<<< HEAD
               <Link to="/case-studies" className={`nav-link ${location.pathname.startsWith('/case-studies') ? 'active' : ''}`}>
+=======
+              <Link to="/case-studies" className={`nav-link ${location.pathname === '/case-studies' ? 'active' : ''}`}>
+>>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 Case studies
               </Link>
             </li>
             <li>
+<<<<<<< HEAD
               <Link to="/blog" className={`nav-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
+=======
+              <Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>
+>>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 Blog
               </Link>
             </li>

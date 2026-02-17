@@ -9,10 +9,12 @@ MHE Next marketing website - a React single-page application for a material hand
 ## Commands
 
 ```bash
-npm run dev      # Start development server (Vite HMR)
-npm run build    # Production build to dist/
-npm run preview  # Preview production build locally
-npm run lint     # Run ESLint
+npm run dev              # Fetch products from Google Sheets & start dev server (Vite HMR)
+npm run build            # Fetch products & production build to dist/
+npm run preview          # Preview production build locally
+npm run lint             # Run ESLint
+npm run fetch-products   # Manually fetch product data from Google Sheets
+npm run migrate-to-sheets # One-time migration script for moving products to Sheets
 ```
 
 ## Architecture
@@ -24,6 +26,9 @@ npm run lint     # Run ESLint
 - Hero (video background with stats card)
 - DrivingChange, Industries, Services, WhyChooseUs (content sections)
 - Testimonials, CaseStudies, Partners (social proof sections)
+- About (about page)
+- CaseStudiesPage (case studies full page)
+- BlogPage (blog page)
 - ProductsListing (products listing page with category groups & animated flip labels)
 - ProductDetail (individual product page with gallery, tabs, 3D viewer)
 - FormModal (lead capture modal for quotes & brochures)
@@ -33,8 +38,11 @@ npm run lint     # Run ESLint
 
 **Routing:**
 - `/` — Homepage
+- `/about` — About page
+- `/case-studies` — Case studies page
+- `/blog` — Blog page
 - `/products` — Products listing page (all products grouped by category)
-- `/products/electric-forklift` — Electric Counterbalance Forklift detail page
+- `/products/:slug` — Individual product detail page (dynamic route)
 
 **Styling:**
 - CSS custom properties defined in `src/index.css` (brand colors, typography)
@@ -50,3 +58,10 @@ npm run lint     # Run ESLint
 **Icons:** lucide-react library for all icons
 
 **Animations:** `motion` (Framer Motion) for page transitions, staggered reveals, and interactive elements
+
+**Data Management:**
+- Product catalog is managed via Google Sheets
+- `scripts/fetch-products.js` fetches data from Google Sheets API and generates `src/data/products.js`
+- Runs automatically before dev server starts and production builds
+- Environment variables required: `GOOGLE_SHEET_ID`, `GOOGLE_API_KEY`
+- Configuration in `scripts/sheets-config.js` (sheet names, columns, icons, category order)
