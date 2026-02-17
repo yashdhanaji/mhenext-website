@@ -6,15 +6,21 @@ This document explains how to add, edit, and remove content on the MHE Next webs
 
 ## How It Works (Big Picture)
 
+There are **two separate Google Spreadsheets**:
+
+| Spreadsheet | Env variable | Manages |
+|---|---|---|
+| **Products Sheet** | `GOOGLE_SHEET_ID` | All product catalog data |
+| **Blog Sheet** | `GOOGLE_BLOG_SHEET_ID` | All blog posts and content |
+
 ```
-Google Sheet  →  npm run fetch-blog  →  src/data/blog.js  →  Website
+Blog Sheet     →  npm run fetch-blog      →  src/data/blog.js   →  Website
+Products Sheet →  npm run fetch-products  →  src/data/products.js →  Website
 ```
 
-1. You edit the Google Sheet (add rows, update text, toggle published).
+1. You edit the relevant Google Sheet (add rows, update text, toggle published).
 2. You run one command in the terminal.
 3. The website data file is regenerated and the changes go live on the next build/deploy.
-
-The same pattern applies to Products — just a different sheet tab and command.
 
 ---
 
@@ -54,9 +60,13 @@ This creates two files inside `migration-output/`:
 
 ### Step 2 — Create the sheet tabs
 
-1. Open the MHE Next Google Sheet.
-2. Click the **+** button at the bottom to add a new tab. Name it exactly **`BlogPosts`**.
-3. Add another tab named **`BlogContent`**.
+> The blog tabs live in a **brand new, separate spreadsheet** — not the Products one. This keeps editorial and product data cleanly separated.
+
+1. Go to [sheets.google.com](https://sheets.google.com) and create a new spreadsheet. Name it something like **"MHE Next — Blog CMS"**.
+2. Copy its **Sheet ID** from the URL: `https://docs.google.com/spreadsheets/d/`**`THIS_PART`**`/edit`
+3. Add that ID to your `.env` file as `GOOGLE_BLOG_SHEET_ID=paste_id_here`.
+4. In the new spreadsheet, rename the default tab to **`BlogPosts`**.
+5. Add a second tab named **`BlogContent`**.
 
 ### Step 3 — Import the CSV data
 
@@ -244,12 +254,17 @@ The post will no longer appear on the site but all its data is preserved in the 
 
 ## 3. Products CMS
 
-Products follow the exact same pattern as Blog but use different sheet tabs:
+Products follow the same pattern as Blog but use a **separate spreadsheet** (configured via `GOOGLE_SHEET_ID`). It has many tabs for the richer product data:
 
 | Tab | Purpose |
 |---|---|
 | `Products` | One row per product |
-| `Images`, `QuickSpecs`, `Specs`, `Features`, `FullFeatures`, `Applications`, `FullApplications`, `Downloads`, `RelatedProducts`, `FullSpecs` | Supporting data for each product |
+| `Images` | Product gallery images |
+| `QuickSpecs`, `Specs`, `FullSpecs` | Specification data |
+| `Features`, `FullFeatures` | Feature lists |
+| `Applications`, `FullApplications` | Application use cases |
+| `Downloads` | Brochure / datasheet links |
+| `RelatedProducts` | Cross-links between products |
 
 To publish product changes:
 
@@ -283,14 +298,18 @@ This automatically runs both fetch scripts before building. The generated `dist/
 
 ## 5. Troubleshooting
 
-### "GOOGLE_API_KEY environment variable is not set"
+### "GOOGLE_API_KEY environment variable is not set" / "GOOGLE_BLOG_SHEET_ID is not configured"
 
-You need a `.env` file in the project root. Ask a developer for the file, or create one:
+You need a `.env` file in the project root. Ask a developer for the file, or create one with all three values:
 
 ```
 GOOGLE_API_KEY=your_api_key_here
-GOOGLE_SHEET_ID=1H-zTOVuQOwb-aWYtex7kcuS3rlN7imfy8dRTuCvu08E
+GOOGLE_SHEET_ID=your_products_sheet_id_here
+GOOGLE_BLOG_SHEET_ID=your_blog_sheet_id_here
 ```
+
+The Sheet ID is the long string in the Google Sheet URL:
+`https://docs.google.com/spreadsheets/d/`**`THIS_IS_THE_ID`**`/edit`
 
 ### "Error fetching range BlogPosts!A:M"
 

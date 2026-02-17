@@ -9,8 +9,8 @@
  *   node scripts/fetch-blog.js
  *
  * Environment Variables:
- *   GOOGLE_SHEET_ID - The ID of your Google Sheet
- *   GOOGLE_API_KEY  - Your Google Sheets API key
+ *   GOOGLE_BLOG_SHEET_ID - The ID of your Blog Google Sheet (separate from products)
+ *   GOOGLE_API_KEY       - Your Google Sheets API key
  *
  * Sheet tabs required:
  *   BlogPosts    (columns A–M): slug | title | category | date | readTime |
@@ -24,7 +24,7 @@ import { google } from 'googleapis';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { SHEET_ID, SHEETS, COLUMNS } from './sheets-config.js';
+import { BLOG_SHEET_ID, SHEETS, COLUMNS } from './sheets-config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,9 +42,9 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-if (!SHEET_ID || SHEET_ID === 'YOUR_GOOGLE_SHEET_ID_HERE') {
-  console.error('❌ Error: GOOGLE_SHEET_ID is not configured');
-  console.error('   Please update GOOGLE_SHEET_ID in scripts/sheets-config.js or .env');
+if (!BLOG_SHEET_ID || BLOG_SHEET_ID === 'YOUR_BLOG_GOOGLE_SHEET_ID_HERE') {
+  console.error('❌ Error: GOOGLE_BLOG_SHEET_ID is not configured');
+  console.error('   Please add GOOGLE_BLOG_SHEET_ID to your .env file');
   process.exit(1);
 }
 
@@ -63,7 +63,7 @@ const sheets = google.sheets({
 async function fetchSheetRange(range) {
   try {
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: SHEET_ID,
+      spreadsheetId: BLOG_SHEET_ID,
       range,
     });
     return response.data.values || [];
@@ -89,7 +89,7 @@ function parseBool(value) {
 
 async function fetchAndGenerateBlog() {
   console.log('🔄 Fetching blog data from Google Sheets...');
-  console.log(`   Sheet ID: ${SHEET_ID}`);
+  console.log(`   Blog Sheet ID: ${BLOG_SHEET_ID}`);
 
   try {
     // Fetch both sheets in parallel

@@ -5,7 +5,11 @@
  * Update SHEET_ID with your actual Google Sheet ID.
  */
 
+// Product catalog sheet
 export const SHEET_ID = process.env.GOOGLE_SHEET_ID || 'YOUR_GOOGLE_SHEET_ID_HERE';
+
+// Blog content sheet (separate spreadsheet)
+export const BLOG_SHEET_ID = process.env.GOOGLE_BLOG_SHEET_ID || 'YOUR_BLOG_GOOGLE_SHEET_ID_HERE';
 
 // Sheet tab names and ranges
 export const SHEETS = {
