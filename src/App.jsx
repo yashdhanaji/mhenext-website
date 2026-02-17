@@ -26,6 +26,7 @@ import CaseStudyDetail from './components/CaseStudyDetail';
 import About from './components/About';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
+import AdminApp from './admin/AdminApp';
 
 function HomePage() {
   return (
@@ -51,24 +52,36 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <div className="app">
-        <ScrollToTop />
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/products" element={<ProductsListing />} />
-            <Route path="/products/:slug" element={<ProductDetail />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        {/* Admin panel — completely separate layout, no Header/Footer */}
+        <Route path="/admin/*" element={<AdminApp />} />
+
+        {/* Public site */}
+        <Route path="/*" element={<PublicSite />} />
+      </Routes>
     </Router>
+  );
+}
+
+function PublicSite() {
+  return (
+    <div className="app">
+      <ScrollToTop />
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/products" element={<ProductsListing />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

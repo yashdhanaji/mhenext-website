@@ -11,6 +11,9 @@ export const SHEET_ID = process.env.GOOGLE_SHEET_ID || 'YOUR_GOOGLE_SHEET_ID_HER
 // Blog content sheet (separate spreadsheet)
 export const BLOG_SHEET_ID = process.env.GOOGLE_BLOG_SHEET_ID || 'YOUR_BLOG_GOOGLE_SHEET_ID_HERE';
 
+// Case studies sheet (separate spreadsheet)
+export const CASE_STUDIES_SHEET_ID = process.env.GOOGLE_CASE_STUDIES_SHEET_ID || 'YOUR_CASE_STUDIES_GOOGLE_SHEET_ID_HERE';
+
 // Sheet tab names and ranges
 export const SHEETS = {
   PRODUCTS: 'Products!A:J',
@@ -26,6 +29,8 @@ export const SHEETS = {
   FULL_SPECS: 'FullSpecs!A:D',
   BLOG_POSTS: 'BlogPosts!A:M',
   BLOG_CONTENT: 'BlogContent!A:F',
+  CASE_STUDIES: 'CaseStudies!A:Q',
+  CASE_STUDY_STATS: 'CaseStudyStats!A:D',
 };
 
 // Column mappings for each sheet (0-indexed)
@@ -106,6 +111,15 @@ export const COLUMNS = {
   },
   BLOG_CONTENT: {
     SLUG: 0, ORDER: 1, TYPE: 2, TEXT: 3, VALUE: 4, LABEL: 5,
+  },
+  CASE_STUDIES: {
+    SLUG: 0, TITLE: 1, CLIENT: 2, INDUSTRY: 3, LOCATION: 4,
+    DURATION: 5, YEAR: 6, THUMBNAIL: 7, HERO_IMAGE: 8, GALLERY: 9,
+    EXCERPT: 10, TAGS: 11, EQUIPMENT: 12, CHALLENGE: 13, SOLUTION: 14,
+    RESULTS: 15, PUBLISHED: 16,
+  },
+  CASE_STUDY_STATS: {
+    SLUG: 0, VALUE: 1, LABEL: 2, ORDER: 3,
   },
 };
 

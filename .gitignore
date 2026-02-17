@@ -16,6 +16,9 @@ dist-ssr
 .env
 .env.local
 
+# Google service account key — never commit this
+service-account.json
+
 # Migration output (temporary CSV files)
 migration-output/
 
