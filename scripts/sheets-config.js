@@ -20,6 +20,8 @@ export const SHEETS = {
   DOWNLOADS: 'Downloads!A:D',
   RELATED_PRODUCTS: 'RelatedProducts!A:C',
   FULL_SPECS: 'FullSpecs!A:D',
+  BLOG_POSTS: 'BlogPosts!A:M',
+  BLOG_CONTENT: 'BlogContent!A:F',
 };
 
 // Column mappings for each sheet (0-indexed)
@@ -92,6 +94,14 @@ export const COLUMNS = {
     label: 1,
     value: 2,
     order: 3,
+  },
+  BLOG_POSTS: {
+    SLUG: 0, TITLE: 1, CATEGORY: 2, DATE: 3, READ_TIME: 4,
+    AUTHOR_NAME: 5, AUTHOR_ROLE: 6, THUMBNAIL: 7, HERO_IMAGE: 8,
+    EXCERPT: 9, TAGS: 10, FEATURED: 11, PUBLISHED: 12,
+  },
+  BLOG_CONTENT: {
+    SLUG: 0, ORDER: 1, TYPE: 2, TEXT: 3, VALUE: 4, LABEL: 5,
   },
 };
 

@@ -1,3 +1,6 @@
+// AUTO-GENERATED — do not edit manually.
+// Update via Google Sheets and run: npm run fetch-blog
+
 export const blogPosts = [
   {
     slug: 'future-of-electric-forklifts-india',

@@ -6,11 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const company = [
-<<<<<<< HEAD
-    { name: 'About Us', href: '/about', isRoute: true },
-=======
     { name: 'About Us', href: '/about' },
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
     { name: 'Careers', href: '#careers' },
     { name: 'News', href: '#news' },
     { name: 'Contact', href: '#contact' }
@@ -31,15 +27,9 @@ const Footer = () => {
   ];
 
   const resources = [
-<<<<<<< HEAD
-    { name: 'Case Studies', href: '/case-studies', isRoute: true },
-    { name: 'Documentation', href: '#docs' },
-    { name: 'Blog', href: '/blog', isRoute: true },
-=======
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'Documentation', href: '#docs' },
     { name: 'Blog', href: '/blog' },
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
     { name: 'FAQs', href: '#faqs' }
   ];
 
@@ -72,15 +62,11 @@ const Footer = () => {
             <ul className="footer-links">
               {company.map((link, index) => (
                 <li key={index}>
-<<<<<<< HEAD
-                  {link.isRoute ? <Link to={link.href}>{link.name}</Link> : <a href={link.href}>{link.name}</a>}
-=======
                   {link.href.startsWith('/') ? (
                     <Link to={link.href}>{link.name}</Link>
                   ) : (
                     <a href={link.href}>{link.name}</a>
                   )}
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 </li>
               ))}
             </ul>
@@ -117,15 +103,11 @@ const Footer = () => {
             <ul className="footer-links">
               {resources.map((link, index) => (
                 <li key={index}>
-<<<<<<< HEAD
-                  {link.isRoute ? <Link to={link.href}>{link.name}</Link> : <a href={link.href}>{link.name}</a>}
-=======
                   {link.href.startsWith('/') ? (
                     <Link to={link.href}>{link.name}</Link>
                   ) : (
                     <a href={link.href}>{link.name}</a>
                   )}
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 </li>
               ))}
             </ul>

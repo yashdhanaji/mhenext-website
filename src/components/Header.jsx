@@ -80,20 +80,12 @@ const Header = () => {
               </Link>
             </li>
             <li>
-<<<<<<< HEAD
               <Link to="/case-studies" className={`nav-link ${location.pathname.startsWith('/case-studies') ? 'active' : ''}`}>
-=======
-              <Link to="/case-studies" className={`nav-link ${location.pathname === '/case-studies' ? 'active' : ''}`}>
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 Case studies
               </Link>
             </li>
             <li>
-<<<<<<< HEAD
               <Link to="/blog" className={`nav-link ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
-=======
-              <Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                 Blog
               </Link>
             </li>

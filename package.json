@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/fetch-products.js && vite",
-    "build": "node scripts/fetch-products.js && vite build",
+    "dev": "node scripts/fetch-products.js && node scripts/fetch-blog.js && vite",
+    "build": "node scripts/fetch-products.js && node scripts/fetch-blog.js && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "fetch-products": "node scripts/fetch-products.js",
-    "migrate-to-sheets": "node scripts/migrate-to-sheets.js"
+    "fetch-blog": "node scripts/fetch-blog.js",
+    "migrate-to-sheets": "node scripts/migrate-to-sheets.js",
+    "migrate-blog-to-sheets": "node scripts/migrate-blog-to-sheets.js"
   },
   "dependencies": {
     "@google/model-viewer": "^4.1.0",

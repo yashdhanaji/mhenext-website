@@ -21,17 +21,11 @@ import Partners from './components/Partners';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
 import ProductsListing from './components/ProductsListing';
-<<<<<<< HEAD
 import CaseStudiesPage from './components/CaseStudiesPage';
 import CaseStudyDetail from './components/CaseStudyDetail';
 import About from './components/About';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-=======
-import About from './components/About';
-import CaseStudiesPage from './components/CaseStudiesPage';
-import BlogPage from './components/BlogPage';
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
 
 function HomePage() {
   return (
@@ -65,14 +59,11 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/products" element={<ProductsListing />} />
-            <Route path="/products/:slug" element={<ProductDetail />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
             <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
-            <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/products" element={<ProductsListing />} />
+            <Route path="/products/:slug" element={<ProductDetail />} />
           </Routes>
         </main>
         <Footer />

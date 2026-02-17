@@ -53,11 +53,7 @@ const CaseStudies = () => {
                     </div>
                   ))}
                 </div>
-<<<<<<< HEAD
                 <Link to={`/case-studies/${study.slug}`} className="btn btn-dark case-study-cta">
-=======
-                <Link to="/case-studies" className="btn btn-dark case-study-cta">
->>>>>>> c1d79eeae69779446b8c8d93ca5a4ebea14d67e2
                   View case
                 </Link>
               </div>
