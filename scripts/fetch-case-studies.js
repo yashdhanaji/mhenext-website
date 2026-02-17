@@ -43,9 +43,9 @@ if (!API_KEY) {
 }
 
 if (!CASE_STUDIES_SHEET_ID || CASE_STUDIES_SHEET_ID === 'YOUR_CASE_STUDIES_GOOGLE_SHEET_ID_HERE') {
-  console.error('❌ Error: GOOGLE_CASE_STUDIES_SHEET_ID is not configured');
-  console.error('   Please add GOOGLE_CASE_STUDIES_SHEET_ID to your .env file');
-  process.exit(1);
+  console.warn('⚠️  GOOGLE_CASE_STUDIES_SHEET_ID is not configured — skipping case studies fetch');
+  console.warn('   Add GOOGLE_CASE_STUDIES_SHEET_ID to your .env file to enable this.');
+  process.exit(0);
 }
 
 // ─── Google Sheets API Client ────────────────────────────────────────────────
@@ -65,7 +65,15 @@ async function fetchSheetRange(range) {
     });
     return response.data.values || [];
   } catch (error) {
-    console.error(`❌ Error fetching range "${range}":`, error.message);
+    const tabName = range.split('!')[0];
+    if (error.message.includes('Unable to parse range') || error.message.includes('notFound')) {
+      console.error(`❌ Tab "${tabName}" not found in your Case Studies Google Sheet.`);
+      console.error(`   Open your sheet and make sure a tab is named exactly: ${tabName}`);
+      console.error(`   Tab names are case-sensitive. Current config: '${range}'`);
+      console.error(`   To fix: rename the tab in Google Sheets, or update scripts/sheets-config.js`);
+    } else {
+      console.error(`❌ Error fetching range "${range}":`, error.message);
+    }
     throw error;
   }
 }
@@ -161,8 +169,9 @@ async function fetchAndGenerateCaseStudies() {
     console.log(`   Total case studies: ${caseStudies.length}`);
 
   } catch (error) {
-    console.error('❌ Failed to fetch and generate case studies:', error.message);
-    process.exit(1);
+    console.warn('⚠️  Case studies fetch failed — using existing src/data/caseStudies.js if it exists.');
+    console.warn('   Fix the issue above, then re-run: npm run fetch-case-studies');
+    process.exit(0);
   }
 }
 
